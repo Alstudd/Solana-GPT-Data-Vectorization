@@ -3,11 +3,12 @@
 import logo from "@/assets/logo.png";
 import AIChatButton from "@/components/AIChatButton";
 import AddEditSolanaDataDialog from "@/components/AddEditSolanaDataDialog";
+import AddJsonDataDialog from "@/components/AddJsonDataDialog";
 import ThemeToggleButton from "@/components/ThemeToggleButton";
 import { Button } from "@/components/ui/button";
 import { UserButton } from "@clerk/nextjs";
 import { dark } from "@clerk/themes";
-import { Plus } from "lucide-react";
+import { File, Plus } from "lucide-react";
 import { useTheme } from "next-themes";
 import Image from "next/image";
 import Link from "next/link";
@@ -16,7 +17,9 @@ import { useState } from "react";
 export default function NavBar() {
   const { theme } = useTheme();
 
-  const [showAddEditSolanaDataDialog, setShowAddEditSolanaDataDialog] = useState(false);
+  const [showAddEditSolanaDataDialog, setShowAddEditSolanaDataDialog] =
+    useState(false);
+  const [showAddJsonDataDialog, setShowAddJsonDataDialog] = useState(false);
 
   return (
     <>
@@ -39,6 +42,10 @@ export default function NavBar() {
               <Plus size={20} className="mr-2" />
               Add Solana Data
             </Button>
+            <Button className="sm:flex hidden" onClick={() => setShowAddJsonDataDialog(true)}>
+              <File size={20} className="mr-2" />
+              Json
+            </Button>
             <AIChatButton />
           </div>
         </div>
@@ -46,6 +53,10 @@ export default function NavBar() {
       <AddEditSolanaDataDialog
         open={showAddEditSolanaDataDialog}
         setOpen={setShowAddEditSolanaDataDialog}
+      />
+      <AddJsonDataDialog
+        open={showAddJsonDataDialog}
+        setOpen={setShowAddJsonDataDialog}
       />
     </>
   );
