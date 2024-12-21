@@ -35,7 +35,7 @@ export default function SolanaData({ solanaData }: SolanaDataProps) {
             {wasUpdated && " (updated)"}
           </CardDescription>
         </CardHeader>
-        <CardContent>
+        <CardContent className="sm:block hidden">
           <p className="truncate">{solanaData.content}</p>
         </CardContent>
       </Card>

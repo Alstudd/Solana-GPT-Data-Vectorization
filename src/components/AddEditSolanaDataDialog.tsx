@@ -32,7 +32,7 @@ interface AddEditSolanaDataDialogProps {
   solanaDataToEdit?: SolanaData;
 }
 
-export default function AddEditNoteDialog({
+export default function AddEditSolanaDataDialog({
   open,
   setOpen,
   solanaDataToEdit,
