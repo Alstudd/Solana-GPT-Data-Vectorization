@@ -34,10 +34,20 @@ export async function POST(req: Request) {
 
     console.log("Relevant notes found: ", relevantNotes);
 
+    // const systemMessage: ChatCompletionMessage = {
+    //   role: "assistant",
+    //   content:
+    //   "Your name is SolGPT. You are an AI trained on the Solana Stack Exchange Platform. You answer the user's question based on the existing data. The relevant data for this query are:\n" +
+    //     relevantNotes
+    //       .map((note) => `Title: ${note.title}\n\nContent:\n${note.content}`)
+    //       .join("\n\n"),
+    //   refusal: null,
+    // };
+
     const systemMessage: ChatCompletionMessage = {
       role: "assistant",
       content:
-      "The relevant notes are:\n" +
+      "The relevant data for this query are:\n" +
         relevantNotes
           .map((note) => `Title: ${note.title}\n\nContent:\n${note.content}`)
           .join("\n\n") +
