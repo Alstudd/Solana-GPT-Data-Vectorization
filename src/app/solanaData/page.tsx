@@ -16,18 +16,18 @@ const SolanaDataPage = async (props: Props) => {
 
   const allSolanaData = await prisma.solanaData.findMany({});
 
-  const sortedSolanaData = allSolanaData.sort((a, b) => {
-    const numberA = parseInt(a.title.match(/\d+/)?.[0] || "0", 10);
-    const numberB = parseInt(b.title.match(/\d+/)?.[0] || "0", 10);
-    return numberA - numberB;
-  });
+  // const sortedSolanaData = allSolanaData.sort((a, b) => {
+  //   const numberA = parseInt(a.title.match(/\d+/)?.[0] || "0", 10);
+  //   const numberB = parseInt(b.title.match(/\d+/)?.[0] || "0", 10);
+  //   return numberA - numberB;
+  // });
 
   return (
     <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-      {sortedSolanaData.map((solanaData) => (
+      {allSolanaData.map((solanaData) => (
         <SolanaData solanaData={solanaData} key={solanaData.id} />
       )).reverse()}
-      {sortedSolanaData.length === 0 && (
+      {allSolanaData.length === 0 && (
         <div className="col-span-full text-center">
           {
             'No solana data found. Click on the "Add Solana Data" button to add solana data.'
