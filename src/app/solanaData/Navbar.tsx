@@ -8,7 +8,7 @@ import ThemeToggleButton from "@/components/ThemeToggleButton";
 import { Button } from "@/components/ui/button";
 import { UserButton } from "@clerk/nextjs";
 import { dark } from "@clerk/themes";
-import { File, Plus } from "lucide-react";
+import { Bot, File, Plus } from "lucide-react";
 import { useTheme } from "next-themes";
 import Image from "next/image";
 import Link from "next/link";
@@ -26,8 +26,8 @@ export default function NavBar() {
       <div className="p-4 shadow">
         <div className="m-auto flex max-w-7xl flex-wrap items-center justify-between gap-3">
           <Link href="/solanaData" className="flex items-center gap-1">
-            <Image src={logo} alt="logo" width={40} height={40} />
-            <span className="font-bold">Solana GPT</span>
+            <Bot width={40} height={40} />
+            <span className="font-bold">Solanisation</span>
           </Link>
           <div className="flex items-center gap-2">
             <UserButton

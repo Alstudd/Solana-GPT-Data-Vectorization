@@ -7,8 +7,8 @@ import { ThemeProvider } from "./ThemeProvider";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Solana GPT Vectorization",
-  description: "Solana GPT Vectorization",
+  title: "Solanisation GPT - Data Scraping & Vectorization",
+  description: "Solanisation GPT - Data Scraping & Vectorization",
 };
 
 export default function RootLayout({
