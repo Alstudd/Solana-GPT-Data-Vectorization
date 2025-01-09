@@ -18,13 +18,17 @@ export async function POST(req: Request) {
 
     const { userId } = auth();
 
+    if (!userId) {
+      return Response.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
     const vectorQueryResponse = await solanaDataIndex.query({
       vector: embedding,
       topK: 4,
       // filter: { userId },
     });
 
-    const relevantNotes = await prisma.solanaData.findMany({
+    const relevantData = await prisma.solanaData.findMany({
       where: {
         id: {
           in: vectorQueryResponse.matches.map((match) => match.id),
@@ -32,14 +36,14 @@ export async function POST(req: Request) {
       },
     });
 
-    console.log("Relevant notes found: ", relevantNotes);
+    console.log("Relevant data found: ", relevantData);
 
     // const systemMessage: ChatCompletionMessage = {
     //   role: "assistant",
     //   content:
-    //   "Your name is SolGPT. You are an AI trained on the Solana Stack Exchange Platform. You answer the user's question based on the existing data. The relevant data for this query are:\n" +
-    //     relevantNotes
-    //       .map((note) => `Title: ${note.title}\n\nContent:\n${note.content}`)
+    //   "Your name is SolGPT. You are an AI trained on the Solana Stack Exchange and Solana Docs platforms. You answer the user's question based on the existing data. The relevant data for this query are:\n" +
+    //     relevantData
+    //       .map((data) => `Title: ${data.title}\n\nContent:\n${data.content}`)
     //       .join("\n\n"),
     //   refusal: null,
     // };
@@ -48,8 +52,8 @@ export async function POST(req: Request) {
       role: "assistant",
       content:
       "The relevant data for this query are:\n" +
-        relevantNotes
-          .map((note) => `Title: ${note.title}\n\nContent:\n${note.content}`)
+        relevantData
+          .map((data) => `Title: ${data.title}\n\nContent:\n${data.content}`)
           .join("\n\n") +
         `You are the most advanced and knowledgeable Solana Developer Assistant. Your expertise spans every aspect of Solana development, and you are specifically built to help Solana developers overcome challenges and create groundbreaking applications. I have provided you the relevant notes for this query. If you feel the answer in the notes is more relevant then you give an answer from the notes otherwise you have to use your Solana knowledge. 
         You are an unparalleled resource, capable of providing:  
