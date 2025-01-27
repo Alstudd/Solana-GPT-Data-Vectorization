@@ -14,3 +14,9 @@ export const updateSolanaDataSchema = createSolanaDataSchema.extend({
 export const deleteSolanaDataSchema = z.object({
   id: z.string().min(1),
 });
+
+export const createAutomationSolanaDataSchema = z.object({
+  key: z.string().min(1, { message: "Key is required" }),
+  title: z.string().min(1, { message: "Title is required" }),
+  content: z.string().optional(),
+});
