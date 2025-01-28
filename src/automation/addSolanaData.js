@@ -9,7 +9,7 @@ async function addSolanaData() {
     for (const item of myData) {
       try {
         const response = await fetch(
-          `${process.env.NEXT_PUBLIC_API_URL}/api/automation`,
+          `${process.env.NEXT_PUBLIC_API_URL}/automation`,
           {
             method: "POST",
             headers: {
